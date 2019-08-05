@@ -29,28 +29,12 @@
   }
 }
 
-.calendar-tue div:first-child {
-  grid-column-start: 2;
-}
+$days: "mon", "tue", "wed", "thu", "fri", "sat", "sun";
 
-.calendar-wed div:first-child {
-  grid-column-start: 3;
-}
-
-.calendar-thu div:first-child {
-  grid-column-start: 4;
-}
-
-.calendar-fri div:first-child {
-  grid-column-start: 5;
-}
-
-.calendar-sat div:first-child {
-  grid-column-start: 6;
-}
-
-.calendar-san div:first-child {
-  grid-column-start: 7;
+@for $i from 1 through 7 {
+  .calendar-#{nth(days, $i)} {
+    grid-column-start: $i;
+  }
 }
 
 .calendar-31 div:hover,
