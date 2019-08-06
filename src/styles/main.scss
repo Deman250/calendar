@@ -2,6 +2,46 @@
 @import "fonts";
 @import "typography";
 
-body {
-  background: $c-gray;
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 100px);
+  grid-template-rows: repeat(6, 100px);
+  grid-gap: 1px;
+  counter-reset: calendar;
+}
+
+.calendar-31 div,
+.calendar-30 div:not(:last-child),
+.calendar-29 div:not(:nth-last-child(-n+2)),
+.calendar-28 div:not(:nth-last-child(-n+3)) {
+  box-sizing: border-box;
+  width: 100px;
+  height: 100px;
+  border: 1px solid #000;
+  counter-increment: calendar;
+
+  &::after {
+    content: counter(calendar);
+    display: flex;
+    line-height: 100px;
+    justify-content: center;
+    align-content: center;
+  }
+}
+
+$days: "mon", "tue", "wed", "thu", "fri", "sat", "sun";
+
+@for $i from 1 through 7 {
+  .calendar-#{nth(days, $i)} {
+    grid-column-start: $i;
+  }
+}
+
+.calendar-31 div:hover,
+.calendar-30 div:not(:last-child):hover,
+.calendar-29 div:not(:nth-last-child(-n+2)):hover,
+.calendar-28 div:not(:nth-last-child(-n+3)):hover {
+  cursor: pointer;
+  background-color: pink;
+  transform: translateY(-20px);
 }
